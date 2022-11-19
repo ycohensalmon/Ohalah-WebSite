@@ -1,0 +1,21 @@
+
+    <%- include('../partiels/headerAdmin.ejs') %>
+    <h1 class="title">מורים</h1>
+ 
+
+         
+      <div class="grid-container">
+        <%for(teacher of teachers) {%>
+          <div class="teacher-in-list">
+            <div class="inner-wrap">
+                <h3><%=teacher.name %></h3>
+                <button type="button" class="btn btn-outline-danger btn-sm log-3"><a class="link" href="/admin/techerClass/<%=teacher._id%>" class="text-secondary"> כתה</a></button>
+                <button type="button" class="btn btn-outline-warning btn-sm log-3"><a class="link" href="/admin/techerinfo/<%=teacher._id%>">פרטים</a></button>
+            </div>
+          </div>
+        <% } %>
+      </div>
+  
+      <button type="button" class="btn btn-outline-success" style="margin: 30px;"><a href="http://localhost:3000/users">הוסף מורה </a></button>
+</body>
+</html>

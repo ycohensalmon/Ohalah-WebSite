@@ -1,0 +1,30 @@
+    <%- include('../partiels/headerAdmin.ejs')%>
+
+    <h1 class="title">הוספת תלמיד</h1>
+    
+    <form action="/admin/addStuds" method="post" class="container" style="grid-gap: 20px; text-align: center;">
+        <div class="stud-input">            
+            <input type="text" name="name" id="name" placeholder="הוסף שם התלמיד"><br>
+        </div>
+
+        <div class="stud-input">            
+            <input type="text" name="tz" id="tz" placeholder="הוסף תעוזת זהות"><br>
+        </div>
+
+        <div class="stud-input" >            
+            <input type="text" name="phone" id="phone" placeholder="הוסף מספר טלפון"><br>
+        </div>
+
+        <div class="stud-input">            
+            <select name="studTeacher" id="stud-teacher">
+                <option value="" disabled selected>בחר מורה</option>
+                <%for (teach of teacher) {%>
+                    <option value="<%=teach.id%>-<%=teach.name%>"><%=teach.name%></option>
+                <%}%>
+            </select>
+        </div>
+
+        <button class="btn btn-outline-success  margin-top-5rem">הוסף</button> 
+    </form>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<% if(data.admin) { %>
+    <%- include('../partiels/headerAdmin.ejs') %>
+<% } %>
+
+<% if(!data.admin) { %>
+    <%- include('../partiels/headerTeacher.ejs') %>
+<% } %>
+    <h1 class="title">הסטוריה</h1>
+    <h3 class="title">שם תלמיד<br> <%= data.student.name %></h3>
+
+    <div style="direction:rtl;display: flex;">
+        <h4>מקרא: </h4>
+        <div class="stages-display">
+            <div class="red">1</div>
+            <div class="orange">2</div>
+            <div class="yellow">3</div>
+            <div class="aqua">4</div>
+            <div class="lime">5</div>
+        </div>
+    </div>
+    <% let lifeSkills = [] %>
+    <% for (color of data.questionnaire) { %>
+        <% if (color.skill == "כישורי חיים") { %>
+            <% lifeSkills.push(color) %>
+        <% } %>
+    <% } %>
+    
+    <% let emotionSkills = [] %>
+    <% for (color of data.questionnaire) { %>
+        <% if (color.skill == "כישורי רגש") { %>
+            <% emotionSkills.push(color) %>
+        <% } %>
+    <% } %>
+    
+    <% let learningSkills = [] %>
+    <% for (color of data.questionnaire) { %>
+        <% if (color.skill == "כישורי למידה") { %>
+            <% learningSkills.push(color) %>
+        <% } %>
+    <% } %>
+    <% let QskillsArr = [lifeSkills, emotionSkills, learningSkills] %>
+    <% let SskillsArr = data.student.history %>
+    <div>
+        <% let skills = ["כישורי חיים", "כישורי רגש", "כישורי למידה"] %>
+        
+        <% for (let i = 0; i < SskillsArr.length; i++) { %>
+        <div class="skill">
+            <h3 class="skill-name"><%= skills[i] %></h3>
+            
+            <% for (let j = 0; j < SskillsArr[i].length; j++) { %>
+                <div style="background-color: <%= QskillsArr[i][j].color %>">
+                    <% for(q of QskillsArr[i][j].questions) { %>
+                        <div style="display: inline-block;">
+                            <br>
+                            <h5 style="display: inline;"><%= q.text %>: </h5>
+                            <% if(SskillsArr[i][j].questions.includes(q.id)) { %>
+                                עבר
+                            <% } %>
+                            <% if(!SskillsArr[i][j].questions.includes(q.id)) { %>
+                                לא עבר
+                            <% } %>
+                            
+                            &nbsp;&nbsp;&nbsp;
+                        </div>                                                  
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+        <% } %>        
+    </div>
+</body>
+</html>

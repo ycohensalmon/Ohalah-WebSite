@@ -1,0 +1,41 @@
+        <%- include('../partiels/headerTeacher.ejs') %>
+
+        <h1 class="title">שם מורה<br> <%= data.teacher %></h1>
+
+        
+        <div style="direction:rtl;display: flex;">
+            <h4>מקרא: </h4>
+            <div class="stages-display">
+                <div class="red">1</div>
+                <div class="orange">2</div>
+                <div class="yellow">3</div>
+                <div class="aqua">4</div>
+                <div class="lime">5</div>
+            </div>
+        </div>
+
+        <div class="grid-container">
+            <% for(stud of data.students) { %>
+
+                <div class="student-wrap">
+                
+                    <div class="student-name">
+                        <h3><%= stud.name %></h3>
+                        <% if (stud.nextStageRequest) { %>
+                            <h6 class="next-satge-request">בקשה להעברת שלב!</h6>
+                        <% } %>          
+                        <button class="btn btn-info"><a href="/stud/studentUpdate/<%= stud._id %>">מצב ועדכון</a> </button>                        
+                    </div>
+
+                    <div class="student-traffic-light">
+                        <div style="height:20px; width:20px; border-radius:50%; background-color:<%= stud.skills[0].color %>;"></div>
+                        <div style="height:20px; width:20px; border-radius:50%;margin-top: 5px; background-color:<%= stud.skills[1].color %>;"></div>
+                        <div style="height:20px; width:20px; ; border-radius:50%;margin-top: 5px; background-color:<%= stud.skills[2].color %>"></div>
+                    </div>
+
+                </div>
+                
+            <% } %>
+        </div>
+    </body>
+</html>

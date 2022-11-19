@@ -1,0 +1,52 @@
+<% if (admin) { %>
+    <%- include('../partiels/headerAdmin.ejs') %>
+<% } %>
+<% if (!admin) { %>
+    <%- include('../partiels/headerTeacher.ejs') %>
+<% } %>
+    <h1 class="title">עידכון שאלון</h1>
+    <h2 class="skill-name"><%= data.skill %></h2>
+        
+    <div class="container">
+        <% for (question of data.questions) { %>
+            <form action="update" method="post" style="text-align: center; background-color:<%= data.color%>;">
+                <div>
+                    שאלה:
+                    <input id="question" type="text" name="text" placeholder="<%= question.text %>">
+                     <br>                                  
+                     <input type="text" name="lastActive" value="<%= question.active %>" style="display:none;">
+                     <% if (question.active) { %> 
+                        <label for="true">פעילה</label>                
+                        <input type="radio" name="active" id="" value="true" checked="true">
+
+                        <label for="false">לא פעילה</label>
+                        <input type="radio" name="active" id="" value="false">          
+                    <% } %>
+                    <% if (!question.active) { %> 
+                        <label for="true">פעילה</label>                
+                        <input type="radio" name="active" id="" value="true">
+
+                        <label for="false">לא פעילה</label>
+                        <input type="radio" name="active" id="" value="false" checked="true">          
+                    <% } %>
+                </div>
+                <br>
+                <input type="text" name="skill" value="<%= data.skill %>" style="display:none">
+                <input type="text" name="color" value="<%= data.color %>" style="display:none">
+                <input type="text" name="id" value="<%= question.id %>" style="display: none;">
+                <input type="submit" value="עידכון">
+            </form>     
+            <br>       
+        <% } %>
+    </div>
+    <form action="addQuestion" method="post" style=" background-color: <%= data.color %>; margin: 20px;">
+        <h3>הוספת שאלה חדשה</h3>
+        <input type="text" name="text">
+        <input type="text" name="skill" value="<%= data.skill %>" style="display:none">
+        <input type="text" name="color" value="<%= data.color %>" style="display:none">
+        <input type="submit" value="הוספה">
+    </form>
+
+    <h5><a href="RequestAddNew">חזרה לבחירת שאלון</a></h5>
+</body>
+</html>

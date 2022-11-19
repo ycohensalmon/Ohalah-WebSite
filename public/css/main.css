@@ -1,0 +1,217 @@
+body{
+    background-color: lightblue;
+    direction: rtl;
+    align-items: center;
+    text-align: center;
+}
+
+.title
+{
+    margin: 60px;  
+    font-weight: bolder;
+    font-family: 'Gill Sans'; 
+}
+
+div.grid-container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 15px;
+    grid-gap: 50px;
+    text-align: center;
+    align-items: center;
+}
+
+a:link
+{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;    
+}
+
+.skill-name
+{
+    text-align: center;
+    color: brown;
+    grid-gap: 5px;    
+}
+
+div.teacher-in-list{
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    grid-gap: 10px;
+    background-color: aliceblue;
+    border-radius: 15px;
+}
+
+div.inner-wrap
+{
+    margin: 20px;
+}
+
+div.student-wrap
+{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 16em;
+    grid-gap: 5px;
+    background-color: aliceblue;
+    border-radius: 15px;
+}
+
+div.student-name
+{
+    margin: 10px;
+}
+
+div.student-traffic-light
+{
+    margin: auto;
+}
+
+.next-satge-request
+{    
+    display: inline;
+    background-color: coral;     
+    margin: 20px;
+}
+
+div.studentsView{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+div.navbarNav
+{
+    height: 50px;
+}
+
+div.user-reg
+{
+    margin: 20px;
+    text-align: center;
+    vertical-align: auto;
+}
+
+div.stud-input
+{
+    margin: 10px;
+}
+
+div.questionnaire
+{
+    grid-gap: 20px;
+}
+
+div.question
+{
+    border: 1px solid black;
+    margin: 5px;    
+}
+
+div.item
+{
+    margin: 10px;
+}
+
+div.form
+{
+    display: grid;
+    grid-template-columns: 1fr;    
+}
+
+div.teacher-student
+{
+    margin: 20px;
+}
+
+div.stages-display
+{
+    display:  flex;
+    width: 10%;
+    border-radius: 15px;
+}
+
+div.direction
+{
+    margin: 20px;
+
+}
+
+div.red{
+    height:20px; width:20px; border-radius:50%;margin: 5px; background-color:red;
+}
+div.orange{
+    height:20px; width:20px; border-radius:50%;margin: 5px; background-color:orange;
+}
+div.yellow{
+    height:20px; width:20px; ; border-radius:50%;margin: 5px; background-color:yellow;
+}
+div.aqua{
+    height:20px; width:20px; ; border-radius:50%;margin: 5px; background-color:aqua;
+}
+div.lime{
+    height:20px; width:20px; ; border-radius:50%;margin: 5px; background-color:lime;
+}
+
+div.questionnaires-view
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.nav-item-space
+{
+    margin-right: 40px;
+}
+
+.questionnaires-selected
+{
+    display: flexbox;
+}
+
+input
+{
+    border:none;
+  outline:none;
+  display:inline-block;
+  vertical-align:middle;
+  position:relative;
+  box-sizing:border-box;
+  border-radius:22px;
+  
+
+}
+
+label
+{
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: auto;
+}
+
+button#sub-btn
+{ 
+    background:darkblue;
+    color:#fff;
+    position:relative;
+    border-radius: 20px;
+    right: 15px;
+    width:100px;
+    height:  40px;
+    cursor:pointer;
+    border:none;
+    outline:none;
+  }
+
+input#question
+{
+    width: 90%;
+    height: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top:  5px;
+
+}

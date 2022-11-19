@@ -1,0 +1,127 @@
+
+    <% if(data.admin) { %>
+        <%- include('../partiels/headerAdmin.ejs') %>
+    <% } %>
+
+    <% if(!data.admin) { %>
+        <%- include('../partiels/headerTeacher.ejs') %>
+    <% } %>
+
+    <h1 class="title">שם תלמיד<br><%= data.student.name %></h1>
+
+    <h5>ת.ז: <%= data.student.info.tz %></h5>
+    <h5>טלפון: <%= data.student.info.phone %></h5>
+    <h5>מורה: <%= data.student.info.teacher %></h5>
+
+    <% if (data.admin) { %>
+        <form action="<%= data.student._id %>" method="post">            
+            <div>                
+                <select name="newTeacher" id="new-teacher">
+                    <option value="" disabled selected>לבחירת מורה חדש</option>
+                    <% for(let teach of teachers) { %>
+                        <option value="<%= teach._id%>"><%= teach.name%></option>
+                    <% } %>
+                </select>
+                <button class="btn btn-outline-secondary">עידכון</button>
+            </div>
+        </form>
+        
+
+        <% if (data.student.nextStageRequest) { %>
+            <form action="<%= data.student._id %>/turnOffNextStageRequest" method="post">
+                <button class="btn btn-danger next-satge-request">ביטול בקשה למעבר שלב</button>
+            </form>
+        <% } %>
+
+    <% } %>
+
+    <div style="margin: 10px;">
+        <form action="<%= data.student._id %>/historyView" method="post">            
+            <button type="submit" class="btn btn-dark">הסטוריה</button>
+        </form>        
+    </div>
+    <!--Start, trying to add stud info-->
+    <% let i = 0 %>        
+    <br>
+    <div style="direction:rtl;display: flex;">
+        <h4>מקרא: </h4>
+        <div class="stages-display">
+            <div class="red">1</div>
+            <div class="orange">2</div>
+            <div class="yellow">3</div>
+            <div class="aqua">4</div>
+            <div class="lime">5</div>
+        </div>
+    </div>
+    
+
+    <div class="grid-container">
+        
+        <% for(skill of data.skills) { %>
+            <div class="skill">
+
+                <h2 class="skill-name"><%= skill.skill %></h2>
+                <% let results = data.student.skills[i].questions %>            
+                <% let grade = Math.floor((results.length/skill.neto) * 100) %>
+                <h5>ציון: <%= grade %></h5>
+
+                <form action="<%= data.student._id %>/updateResult" method="post">
+                    
+                    <div class="questionnaire" style="background-color: <%= skill.color %>;">
+                        <% for (q of skill.questions) { %>
+                        
+                            <% if (q.active) { %>
+                                <input type="text" name="qId" id="" value="<%= q.id %>" style="display:none;">
+                                
+
+                                    <div class="question" style="text-align: center;">
+                                        <h5 style="font-size: 20px; color: blue;"><%= q.text %>:</h5>
+
+                                        <% if (results.includes(q.id)) { %> 
+                                            <label for="true">עבר </label>                
+                                            <input type="radio" name="<%= q.id %>" id="" value="true" checked="true">
+                                            &nbsp;&nbsp;&nbsp;
+                                            <label for="false">לא עבר </label>
+                                            <input type="radio" name="<%= q.id %>" id="" value="false">          
+                                        <% } %>
+
+                                        <% if (!results.includes(q.id)) { %> 
+                                                <label for="true">עבר </label>                
+                                                <input type="radio" name="<%= q.id %>" id="" value="true">
+                                                &nbsp;&nbsp;&nbsp;
+                                                <label for="false">לא עבר </label>
+                                                <input type="radio" name="<%= q.id %>" id="" value="false" checked="true">          
+                                        <% } %>                            
+                                    </div>
+
+                                
+                            <% } %>
+                                        
+                        <% } %>
+                    </div>
+                    <input type="number" name="skill" id="" value="<%= i %>" style="display: none;">
+                    <input type="text" name="sId" id="" value="<%= data.student._id %>" style="display: none;">                    
+                    <button type="submit" class="btn btn-outline-dark" class="link"><h6>עידכון</h6></button>
+                    
+                </form>                
+                
+                <% if(data.admin  &&  grade >= 80  &&  skill.color != "lime") { %>
+                    <form action="<%= data.student._id %>/nextStage" method="post">
+                        <button type="submit" class="btn btn-success link"><h6>העברת שלב</h6></button>
+                        <input type="number" name="skill"  value="<%= i %>" style="display: none;">                    
+                        <input type="text" name="color"  value="<%= skill.color %>" style="display: none;">
+                        <input type="text" name="sId"  value="<%= data.student._id %>" style="display: none;">
+                        <input type="text" name="passQuestions"  value="<%= data.student.skills[i].questions %>" style="display: none;">
+                    </form>
+                <% } %>
+
+                <% i = i+1 %>
+                                
+            </div>
+        <% } %>
+    </div>
+
+
+    <!--end, trying to add stud info-->
+</body>
+</html>

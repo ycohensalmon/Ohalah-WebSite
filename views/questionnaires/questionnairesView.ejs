@@ -1,0 +1,71 @@
+<% if (admin) { %>
+    <%- include('../partiels/headerAdmin.ejs') %>
+<% } %>
+<% if (!admin) { %>
+    <%- include('../partiels/headerTeacher.ejs') %>
+<% } %>
+
+<h1 class="title">סקירת שאלונים</h1>
+
+<% if(update) { %> 
+    <div class="questionnaires-selected">
+        <form action="addNew" method="post">
+            <h4>בחר שאלון לעידכון</h4>
+
+            <div class="item">
+                <select name="skill" id="skill" style="font-size: large;">                    
+                    <option value="כישורי חיים">כישורי חיים</option>
+                    <option value="כישורי רגש">כישורי רגש</option>
+                    <option value="כישורי למידה">כישורי למידה</option>
+                </select>            
+
+                <select name="color" id="color" style="font-size: large;margin-top: 30px;">                    
+                    <option value="red">אדום</option>
+                    <option value="orange">כתום</option>
+                    <option value="yellow">צהוב</option>
+                    <option value="aqua">כחול</option>
+                    <option value="lime">ירוק</option>
+                </select>                                
+                <input type="submit" value="אישור">                                
+            </div>
+            
+        </form>
+    </div>
+    <br><br><br>
+<% } %>
+
+<div style="direction:rtl;display: flex;">
+    <h4>מקרא: </h4>
+    <div class="stages-display">
+        <div class="red">1</div>
+        <div class="orange">2</div>
+        <div class="yellow">3</div>
+        <div class="aqua">4</div>
+        <div class="lime">5</div>
+    </div>
+</div>
+
+<div class="questionnaires-view">
+
+    <% for (qeustionnaire of data) { %>
+        <div style="background-color: <%= qeustionnaire.color %>; margin:5px; text-align:center;">
+            <h3><%= qeustionnaire.skill %></h3>
+            <% for (ques of qeustionnaire.questions) { %>
+                <% if(ques.active) { %>
+                    <div style="display: flexbox;">
+                       <h6><%= ques.text %></h6> &nbsp; פעילה
+                    </div>
+                <% } %>
+
+                <% if(!ques.active) { %>
+                    <div style="display: flex;">
+                        <h6><%= ques.text %></h6> &nbsp; לא פעילה
+                    </div>
+                <% } %>
+                    <br>
+            <% } %>
+        </div>
+    <% } %>
+</div>
+</body>
+</html>

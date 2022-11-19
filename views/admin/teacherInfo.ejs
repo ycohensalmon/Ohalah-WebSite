@@ -1,0 +1,22 @@
+
+ <%- include('../partiels/headerAdmin.ejs') %>
+ <h1 class="title">עדכון פרטי מורה</h1>
+ 
+ <form action="/admin/userUpdate/<%= teacher._id%>" method="post">
+     <div class="user-reg">
+         <label for="name">שם : <%= teacher.name%></label>
+         <input type="text" name="name" id="name" value="<%=teacher.name%>" placeholder="<%= teacher.name%>">
+     </div>
+     <div class="user-reg">
+         <label for="email">איימיל: </label>
+         <input type="text" name="email" id="email" value="<%=teacher.email%>" placeholder="<%= teacher.email%>">
+     </div>
+     <div class="user-reg">
+         <label for="password">סיסמה </label>
+         <input type="password" name="password" id="password"  placeholder="***********">
+     </div>
+     <button id="sub-btn" class="btn btn-outline-success">עידכון</button>
+ </form>
+
+</body>
+</html>

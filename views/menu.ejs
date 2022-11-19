@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <title>main menu</title>
+</head>
+
+<body style="text-align:center;">
+    <img src="/img/logo.jpeg" alt="logo" width="20%" height="100%" style=" margin: 8px;">
+    <h1 class="title"> ברוכים הבאים לאוהליך</h1>
+
+    <form action="/auth" method="post">
+        <div class="user-reg">
+            <label for="email">הכנס אימייל</label>
+            <input type="text" name="email" id="email" placeholder="אימייל">
+        </div>
+        <div class="user-reg">
+            <label for="password">הכנס סיסמה</label>
+            <input type="password" name="password" id="password" placeholder="סיסמה">
+        </div>
+        <button id="sub-btn">לחץ לאישור</button>
+    </form>
+<%- include('partiels/footer.ejs') %> 
