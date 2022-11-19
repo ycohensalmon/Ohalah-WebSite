@@ -54,6 +54,11 @@ after all instalations, we need to put the data to the database so in the termin
 node seeds.js
 ```
 
+If you receive all kinds of error messages, try running the following command
+```
+npm i
+```
+
 now we can run the WebSite
 run this command on the terminal
 ```
